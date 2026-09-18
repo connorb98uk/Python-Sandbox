@@ -260,8 +260,6 @@ def add_numbers(a, b):
     return a + b
 print(add_numbers(5, 3)) # Prints: 8
 
-
-
 # Loops - A loop is used for iterating over a sequence (like a list, tuple, dictionary, set, or string). The for loop is used to iterate over a sequence, while the while loop is used to execute a block of code as long as a condition is true.
 # For loop
 for i in range(5):
@@ -280,3 +278,74 @@ print(squared_numbers) # Prints: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 doubled_numbers = [x*2 for x in range(10)]
 print(doubled_numbers) # Prints: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
 
+'''
+Module 1 - Unit 2
+'''
+
+# Condition Statements - Condition statements are used to perform different actions based on different conditions. The if statement is used to test a condition, and the elif and else statements are used to test additional conditions or provide a default action.
+x = 10
+
+# If
+if x > 5:
+    print(f'{x} is greater than 5') # Prints: 10 is greater than 5
+
+# Elif
+if x > 5:
+    print(f'{x} is greater than 5') # Prints: 10 is greater than 5
+elif x == 5:
+    print(f'{x} is equal to 5')
+else:
+    print(f'{x} is less than 5')
+
+# More advanced elif statements with multiple conditions
+if x > 5 and x < 15:
+    print(f'{x} is greater than 5 and less than 15') # Prints: 10 is greater than 5 and less than 15
+elif x == 5 or x == 15:
+    print(f'{x} is equal to 5 or 15')
+
+# More advanced if, elif, else statements with multiple conditions
+score = 85
+grade = None
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"A score of {score} receives a grade of {grade}.") # Prints: A score of 85 receives a grade of B.
+
+# Task if statements to determine the boxer's weight division based on their weight. 
+weight = math.sqrt(2622) # = 51.209
+division = None
+
+if 48 < weight <= 49:
+    division = "light flyweight"
+elif 49 < weight <= 51:
+    division = "flyweight"
+elif 51 < weight <= 52:
+    division = "super flyweight"
+
+print(f"A boxer with weight {weight:5.3f}kg is in the {division} division.") # Prints: A boxer with weight 51.209kg is in the flyweight division.
+
+# Nested conditional 
+sunny = True
+temp = 12
+if sunny:
+    print("A beautiful sunny day. Let's go for a walk!")
+    if temp < 10:
+        # it's sunny AND the temperature is less than 10 degrees
+        print("And we should take a good coat on our walk.")
+    if temp > 20:
+        # it's sunny AND the temperature is greater than 20 degrees
+        print("And don't forget to pack lots of water for the walk.")
+
+# Type conversion functions - Type conversion functions are used to convert a value from one data type to another. The int() function converts a value to an integer, the float() function converts a value to a float, and the str() function converts a value to a string.
+print(int(3.7)) # Prints: 3
+print(float(3)) # Prints: 3.0
+print(str(3)) # Prints: '3'
