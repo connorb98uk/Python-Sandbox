@@ -349,3 +349,313 @@ if sunny:
 print(int(3.7)) # Prints: 3
 print(float(3)) # Prints: 3.0
 print(str(3)) # Prints: '3'
+
+# Loops
+
+# For loop using rang()
+for i in range(5):
+    print(f"The number is {i}") # Prints: The number is 0, The number is 1, ..., The number is 4
+
+names = ["Alice", "Bob", "Charlie", "Diana", "Eve"]
+
+for name in names:
+    print(f"Hello, {name}!") # Prints: Hello, Alice!, Hello, Bob!, ..., Hello, Eve!
+
+list_of_colours = ['Red', 'Green', 'Blue', 'Yellow']
+for colour in list_of_colours:
+    if colour == 'Green':
+        print('Green is my favourite colour!')
+    else:
+        print('{} is a nice colour.'.format(colour))
+
+'''
+Output:
+Red is a nice colour.
+Green is my favourite colour!
+Blue is a nice colour.
+Yellow is a nice colour.
+'''
+
+# Accessing index and value in a list using enumerate()
+fruits = ['apple', 'banana', 'cherry']
+for i, fruit in enumerate(fruits):
+    print(f"Item {i}: {fruit}")
+
+'''
+Output:
+Item 0: apple
+Item 1: banana
+Item 2: cherry
+'''
+
+# more advanced for loop using range()
+for i in range(0, 10, 2): # Start (inclusive), stop (exclusive), step
+    print(f"The number is: {i}")
+
+'''
+output:
+The number is: 0
+The number is: 2
+The number is: 4
+The number is: 6
+The number is: 8
+'''
+
+'''
+Exercise 1: Finding factors using a for loop
+Use a for loop to find all of the factors of 120 (i.e. all numbers n such that 120/n is an integer). 
+Note that we can use the mod operator to find factors, since if m is a factor of n, then n % m is zero. 
+You should loop from 1 to 120 and use an if condition within the loop to determine if each number is a factor of 120, 
+and if it is, append it to a list called factors.
+'''
+
+factors = []
+
+for i in range(1, 121):
+    if 120 % i == 0:
+        factors.append(i)
+
+print(factors) # Prints: [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60, 120]
+
+
+# Looping through dictionaries
+student_grades = {'Connor': 85, 'Alice': 92, 'Bob': 78}
+
+for i in student_grades:
+    print(i) # prints Connor, Alice, Bob because iterating through a dictionary by default iterates through its keys
+
+for i in student_grades.values():
+    print(i) # prints 85, 92, 78 because iterating through the values of the dictionary
+
+# Using .items() to access both values and keys in the dictionary
+for student, grade in student_grades.items():
+    print(f"{student}: {grade}") # prints Connor: 85, Alice: 92, Bob: 78
+
+
+people_and_places = {
+    'John': {'home': 'Leeds', 'born': 'Paris', 'parents': 'Paris'},
+    'Fred': {'home': 'Barcelona', 'born': 'Madrid', 'parents': 'Oviedo'},
+    'George': {'home': 'London', 'born': 'Bristol', 'parents': 'Exeter'},
+}
+info_string = '{} lives in {}. He was born in {} and his parents live in {}.'
+for name, homes in people_and_places.items():
+    # name and homes refer to the key and value of this dictionary item
+    print(info_string.format(name, homes['home'], homes['born'], homes['parents']))
+
+'''
+Output:
+John lives in Leeds. He was born in Paris and his parents live in Paris.
+Fred lives in Barcelona. He was born in Madrid and his parents live in Oviedo.
+George lives in London. He was born in Bristol and his parents live in Exeter.
+'''
+
+# While loop
+i = 1
+while i < 6:
+    print(f"The number is {i}")
+    i += 1 # Increment i by 1 in each iteration
+
+'''
+Output:
+The number is 1
+The number is 2
+The number is 3
+The number is 4
+The number is 5
+'''
+
+'''
+The following starter code sets the value of two integers, a and b. 
+Write a while loop that while b>0 sets the value of the temporary variable t to b, 
+then sets the value of b to a % b, and finally, sets the value of a to t.
+'''
+a=35
+b=10
+while b > 0:
+    t= b
+    b= a % b
+    a= t
+print(a) # Prints the greatest common divisor (GCD) of 35 and 10, which is 5
+
+# Using break to exit a loop early
+i = 1
+while i < 10:
+    print(f"The number is {i}")
+    if i == 5:
+        break
+    i += 1
+
+'''
+Output:
+The number is 1
+The number is 2
+The number is 3
+The number is 4
+The number is 5
+'''
+
+# using continue to skip the rest of the loop iteration and move to the next iteration
+i = 0
+while i < 10:
+    i += 1
+    if i % 2 == 0:
+        continue
+    print(f"The number is {i}")
+
+'''
+Output:
+The number is 1
+The number is 3
+The number is 5
+The number is 7
+The number is 9
+'''
+
+# Nested loops and if statements
+for i in range(1, 4):
+    for j in range(1, 4):
+        if i == j:
+            print(f"i and j are equal: {i}")
+        else:
+            print(f"i and j are not equal: i={i}, j={j}")
+
+'''
+Output:
+i and j are equal: 1
+i and j are not equal: i=1, j=2
+i and j are not equal: i=1, j=3
+i and j are not equal: i=2, j=1
+i and j are equal: 2
+i and j are not equal: i=2, j=3
+i and j are not equal: i=3, j=1
+i and j are not equal: i=3, j=2
+i and j are equal: 3
+'''
+
+# List comprehensions
+doubles = [i * 2 for i in range(1, 11)]
+print(doubles) # Output: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+# List comprehension with a condition
+odds = [i for i in range(1, 11) if i % 2 != 0]
+print(odds) # Output: [1, 3, 5, 7, 9]
+
+grades = {
+    "Asterix" : 57,
+    "Galois" : 99,
+    "Cazzgr" : 45,
+    "Dilbert" : 3,
+}
+
+top_students=[key for (key, value) in grades.items() if value > 50]
+print(top_students) # Output: ['Asterix', 'Galois']
+
+# If else in a list comprehension
+pass_fail = ["Pass" if value >= 50 else "Fail" for value in grades.values()]
+print(pass_fail) # Output: ['Pass', 'Pass', 'Fail', 'Fail']
+
+# Filtering a list to include only integers
+list_of_numbers = [3.0, 3, 7.5, 109, 2.2]
+filtered = [i for i in list_of_numbers if isinstance(i, int)]
+print(filtered) # Output: [3, 109]
+
+# Functions: defining reusable blocks of code that can be called with different arguments.
+def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Alice") # Output: Hello, Alice!
+greet("Bob") # Output: Hello, Bob!
+
+def add(a,b):
+    return a + b 
+
+print(add(3, 5)) # Output: 8
+print(add(10, 20)) # Output: 30
+
+# print vs return: print displays the result immediately, while return sends the result back to the caller.
+
+# keyword arguments: allowing you to specify arguments by name when calling a function.
+def greet_with_prefix(name, prefix="Hello"):
+    print(f"{prefix}, {name}!")
+
+greet_with_prefix("Alice") # Output: Hello, Alice!
+greet_with_prefix("Bob", prefix="Hi") # Output: Hi, Bob!
+
+# define a function with two parameters - nothing is output at this stage
+def isItChristmas(month, day):
+    if month == 12 and day == 25:
+        print('Happy Christmas')
+    else:
+        print('Have a nice day')
+isItChristmas(12, 25) # Output: Happy Christmas
+isItChristmas(11, 5) # Output: Have a nice day
+
+# Exercise 2: Filtering words with a function
+# Define a function that takes as input a list of words and returns all the words from that list that are more than 6 letters long and start with a letter that comes after ‘l’ in the alphabet (i.e. ‘m’ or later)
+def filter_words(words):
+    return [word for word in words if len(word) > 6 and word[0].lower() > 'l']
+
+# Example usage:
+words = ["magnificent", "apple", "zebra", "lighthouse", "mountain", "elephant"]
+filtered_words = filter_words(words)
+print(filtered_words) # Output: ['magnificent', 'mountain']
+
+# Keyword arguments in any order
+def isItChristmas(month, day):
+    return month == 12 and day == 25
+
+isItChristmas(day=25, month=12) # Output: True
+
+# Optional arguments with default values
+def greet_with_optional_prefix(name, prefix="Hello"):
+    print(f"{prefix}, {name}!")
+
+greet_with_optional_prefix("Alice") # Output: Hello, Alice!
+greet_with_optional_prefix("Bob", prefix="Hi") # Output: Hi, Bob!
+
+# Variable number of arguments: allowing a function to accept any number of positional arguments.
+def sum_all(*args):
+    return sum(args)
+
+print(sum_all(1, 2, 3)) # Output: 6
+print(sum_all(4, 5, 6, 7)) # Output: 22
+
+# **kwargs: allowing a function to accept any number of keyword arguments.
+
+def print_all(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+print_all(name="Alice", age=30) 
+# Output:
+# name: Alice
+# age: 30
+
+# Variable number of positional arguments with a separator: allowing a function to accept any number of positional arguments and join them with a specified separator.
+def join_strings(*args, sep=' '):
+    return sep.join(args)
+
+print(join_strings('fish', 'chips'))
+print(join_strings('fish', 'chips', sep=' & '))
+# Output:
+# fish chips
+# fish & chips
+
+'''
+Docstrings: a way to document your functions, classes, and modules in Python. 
+They are written as multi-line strings (triple quotes) and are placed immediately after the definition of a function, class, or module.
+
+def example_function(param1, param2):
+    """
+    This is an example function that demonstrates the use of a docstring.
+
+    Parameters:
+    param1 (int): The first parameter.
+    param2 (int): The second parameter.
+
+    Returns:
+    int: The sum of param1 and param2.
+    """
+    return param1 + param2
+'''
+
