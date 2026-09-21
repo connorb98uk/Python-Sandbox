@@ -659,3 +659,267 @@ def example_function(param1, param2):
     return param1 + param2
 '''
 
+# Object-oriented programming: defining classes and creating objects in Python.
+
+'''
+In OOP, we model our programs around objects that represent real-world things or concepts. Each object bundles together:
+
+Data (called attributes) — what the object knows
+Behaviours (called methods) — what the object can do
+'''
+class Person: # This line defines a class named Person.
+    def __init__(self, name, age): # Constructor method to initialize the object's attributes.
+        self.name = name # Attribute to store the person's name.
+        self.age = age # Attribute to store the person's age.
+
+    def greet(self): # Method to print a greeting message including the person's name and age.
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+    def old_enough_to_vote(self): # Method to check if the person is old enough to vote.
+        return self.age >= 18 # Method to check if the person is old enough to vote.
+
+# Example usage:
+alice = Person("Alice", 30)
+alice.greet() # Output: Hello, my name is Alice and I am 30 years old.
+print(alice.old_enough_to_vote()) # Output: True
+
+# Bank account example in OOP
+class BankAccount():
+    """A simple bank account class."""
+    
+    bank_name = "Python Bank"  # Class attribute - same for all accounts
+    
+    def __init__(self, account_holder, initial_balance=0):
+        """Create a new bank account.
+        
+        Parameters:
+            account_holder (str): Name of the account holder
+            initial_balance (float): Starting balance (default 0)
+        """
+        self.account_holder = account_holder  # Instance attribute
+        self.balance = initial_balance         # Instance attribute
+    
+    def deposit(self, amount):
+        """Add money to the account."""
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited £{amount:.2f}. New balance: £{self.balance:.2f}")
+        else:
+            print("Deposit amount must be positive.")
+    
+    def withdraw(self, amount):
+        """Remove money from the account."""
+        if amount > 0:
+            if amount <= self.balance:
+                self.balance -= amount
+                print(f"Withdrew £{amount:.2f}. New balance: £{self.balance:.2f}")
+            else:
+                print("Insufficient funds.")
+        else:
+            print("Withdrawal amount must be positive.")
+    
+    def get_balance(self):
+        """Return the current balance."""
+        return self.balance
+    
+    def display_info(self):
+        """Display account information."""
+        print(f"Account holder: {self.account_holder}")
+        print(f"Bank: {self.bank_name}")
+        print(f"Current balance: £{self.balance:.2f}")
+
+# Create an instance of the class (an object)
+alice_account = BankAccount("Alice Smith", 1000)
+alice_account.display_info()
+
+'''
+Account holder: Alice Smith
+Bank: Python Bank
+Current balance: £1000.00
+'''
+
+'''
+Exercise: Creating and using a bank account
+Create your own bank account object with your name and an initial balance of £250. Then:
+
+Deposit £100
+
+Withdraw £50
+
+Display the account information
+'''
+
+# Example solution:
+my_account = BankAccount("Connor Blackburn", 250)
+my_account.deposit(100)
+my_account.withdraw(50)
+my_account.display_info()
+
+'''
+Account holder: Connor Blackburn
+Bank: Python Bank
+Current balance: £300.00
+'''
+
+# Static methods are methods that belong to the class rather than any particular instance. 
+# Let’s add a currency conversion feature to our BankAccount class. Currency conversion doesn’t depend on any specific account, so it’s perfect for a static method:
+
+class BankAccount():
+    """A simple bank account class with currency conversion."""
+    
+    bank_name = "Python Bank"
+    
+    def __init__(self, account_holder, initial_balance=0):
+        self.account_holder = account_holder
+        self.balance = initial_balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited £{amount:.2f}. New balance: £{self.balance:.2f}")
+        else:
+            print("Deposit amount must be positive.")
+    
+    def withdraw(self, amount):
+        if amount > 0:
+            if amount <= self.balance:
+                self.balance -= amount
+                print(f"Withdrew £{amount:.2f}. New balance: £{self.balance:.2f}")
+            else:
+                print("Insufficient funds.")
+        else:
+            print("Withdrawal amount must be positive.")
+    
+    def display_info(self):
+        print(f"Account holder: {self.account_holder}")
+        print(f"Bank: {self.bank_name}")
+        print(f"Balance: £{self.balance:.2f}")
+        # Use the static method to show balance in euros
+        euros = BankAccount.gbp_to_eur(self.balance)
+        print(f"Balance in EUR: €{euros:.2f}")
+    
+    @staticmethod
+    def gbp_to_eur(amount_gbp):
+        """Convert British pounds to euros.
+        
+        This is a static method because the conversion rate is the same
+        for all accounts - it doesn't depend on any particular account's data.
+        """
+        exchange_rate = 1.17  # Example rate
+        return amount_gbp * exchange_rate
+    
+    @staticmethod
+    def eur_to_gbp(amount_eur):
+        """Convert euros to British pounds."""
+        exchange_rate = 1.17
+        return amount_eur / exchange_rate
+
+# Call static methods directly on the class (no object needed)
+print("Converting £100 to euros:")
+euros = BankAccount.gbp_to_eur(100)
+print(f"£100 = €{euros:.2f}")
+
+print("\nConverting €200 to pounds:")
+pounds = BankAccount.eur_to_gbp(200)
+print(f"€200 = £{pounds:.2f}")
+
+# Create an account and see the conversion in action
+print("\nCreating account:")
+david_account = BankAccount("David Lee", 1000)
+david_account.display_info()
+
+# Static methods can also be called on instances (though less common)
+print("\nUsing static method on an instance:")
+converted = david_account.gbp_to_eur(500)
+print(f"£500 = €{converted:.2f}")
+
+'''
+Converting £100 to euros:
+£100 = €117.00
+
+Converting €200 to pounds:
+€200 = £170.94
+
+Creating account:
+Account holder: David Lee
+Bank: Python Bank
+Balance: £1000.00
+Balance in EUR: €1170.00
+
+Using static method on an instance:
+£500 = €585.00
+'''
+
+'''
+Private methods are methods that are intended to be used only within the class itself. 
+They are not meant to be accessed from outside the class. 
+In Python, private methods are typically indicated by a leading underscore in their name, e.g., _private_method().
+
+An example for the bank class would be a private method to calculate the monthly interest on the account balance
+'''
+
+# Inheritance in OOP
+# Inheritance allows a class (child class) to inherit attributes and methods from another class (parent class). This promotes code reuse and can model real-world relationships.
+
+'''
+Let’s continue with our banking example. 
+We’ll create two specialised types of accounts that inherit from BankAccount: 
+a SavingsAccount that earns interest, and a CurrentAccount that allows overdrafts.
+'''
+
+class SavingsAccount(BankAccount):
+    def __init__(self, account_holder, balance, interest_rate):
+        super().__init__(account_holder, balance)
+        self.interest_rate = interest_rate
+
+    def calculate_monthly_interest(self):
+        return self.balance * self.interest_rate / 12
+
+class CurrentAccount(BankAccount):
+    def __init__(self, account_holder, balance, overdraft_limit):
+        super().__init__(account_holder, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def can_withdraw(self, amount):
+        return self.balance + self.overdraft_limit >= amount
+
+    def display_info(self):
+        super().display_info()
+        print(f"Overdraft limit: £{self.overdraft_limit:.2f}")
+
+'''
+Key OOP terms:
+Overriding: Child class replaces parent’s method implementation
+Overloading: Traditional overloading is not supported directly in Python; similar behaviour can be achieved with default arguments or *args/**kwargs
+Polymorphism: Same interface, different behaviours depending on object type
+'''
+
+# Super() to extend parent methods 
+'''
+The super() function allows you to call methods from a parent class within a child class. 
+This is particularly useful when you want to extend or modify the behavior of inherited methods without completely overriding them.
+'''
+class PremiumAccount(BankAccount):
+    """A premium account with cashback on withdrawals."""
+    
+    def __init__(self, account_holder, initial_balance=0, cashback_rate=0.01):
+        super().__init__(account_holder, initial_balance)
+        self.cashback_rate = cashback_rate
+        self.cashback_earned = 0
+    
+    def withdraw(self, amount):
+        """Override withdraw to add cashback feature."""
+        # First, do the normal withdrawal using parent's method
+        initial_balance = self.balance
+        super().withdraw(amount)
+        
+        # If withdrawal was successful, add cashback
+        if self.balance < initial_balance:  # Money was withdrawn
+            cashback = amount * self.cashback_rate
+            self.cashback_earned += cashback
+            print(f"Cashback earned: £{cashback:.2f} (Total: £{self.cashback_earned:.2f})")
+
+greg_premium = PremiumAccount("Greg Smith", 1000, cashback_rate=0.02)
+greg_premium.withdraw(100)
+greg_premium.withdraw(200)
+
